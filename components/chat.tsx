@@ -124,7 +124,7 @@ export function Chat({
           selectedModelId={initialChatModel}
           selectedVisibilityType={initialVisibilityType}
           isReadonly={isReadonly}
-          session={session}
+         // session={session}
         />
 
         <Messages
