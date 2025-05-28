@@ -25,9 +25,8 @@ function PureChatHeader({
   selectedModelId: string;
   selectedVisibilityType: VisibilityType;
   isReadonly: boolean;
-  session?: Session; // ✅ made optional
+  session?: Session; // <- made optional
 }) {
-
   const router = useRouter();
   const { open } = useSidebar();
 
