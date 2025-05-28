@@ -8,7 +8,7 @@ import { DataStreamHandler } from '@/components/data-stream-handler';
 export default async function Page() {
   const id = generateUUID();
 
-  const cookieStore = cookies(); // ✅ fixed: no await here
+  const cookieStore = await cookies(); // ✅ you *do* need await here
   const modelIdFromCookie = cookieStore.get('chat-model');
   const modelId = modelIdFromCookie?.value ?? DEFAULT_CHAT_MODEL;
 
