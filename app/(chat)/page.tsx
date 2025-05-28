@@ -8,10 +8,8 @@ import { DataStreamHandler } from '@/components/data-stream-handler';
 export default async function Page() {
   const id = generateUUID();
 
-  // ✅ FIX: cookies() is async — add await
   const cookieStore = await cookies();
   const modelIdFromCookie = cookieStore.get('chat-model');
-
   const modelId = modelIdFromCookie?.value ?? DEFAULT_CHAT_MODEL;
 
   return (
@@ -23,6 +21,13 @@ export default async function Page() {
         initialChatModel={modelId}
         initialVisibilityType="private"
         isReadonly={false}
+        session={{
+          user: {
+            id: 'guest',
+            name: 'Guest',
+            email: 'guest@example.com',
+          }
+        }}
         autoResume={false}
       />
       <DataStreamHandler id={id} />
