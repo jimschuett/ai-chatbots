@@ -24,10 +24,11 @@ export default async function Page() {
         session={{
           user: {
             id: 'guest',
-            type: 'guest', // ✅ added this
+            type: 'guest',
             name: 'Guest',
             email: 'guest@example.com',
-          }
+          },
+          expires: new Date(Date.now() + 1000 * 60 * 60 * 24).toISOString(), // expires in 1 day
         }}
         autoResume={false}
       />
