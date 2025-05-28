@@ -6,16 +6,15 @@ import { generateUUID } from '@/lib/utils';
 import { DataStreamHandler } from '@/components/data-stream-handler';
 
 export default async function Page() {
-  // 🔥 SKIP auth check
-  // const session = await auth();
-  // if (!session) {
-  //   redirect('/api/auth/guest');
-  // }
-
+  // Generate a unique ID for the session
   const id = generateUUID();
 
+  // Correct use of cookies (no await)
   const cookieStore = cookies();
   const modelIdFromCookie = cookieStore.get('chat-model');
+
+  // Fallback to default chat model if no cookie is found
+  const modelId = modelIdFromCookie?.value ?? DEFAULT_CHAT_MODEL;
 
   return (
     <>
@@ -23,11 +22,9 @@ export default async function Page() {
         key={id}
         id={id}
         initialMessages={[]}
-        initialChatModel={modelIdFromCookie?.value ?? DEFAULT_CHAT_MODEL}
+        initialChatModel={modelId}
         initialVisibilityType="private"
         isReadonly={false}
-        // 🔥 REMOVE session prop
-        // session={session}
         autoResume={false}
       />
       <DataStreamHandler id={id} />
