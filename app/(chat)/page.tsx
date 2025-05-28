@@ -24,6 +24,7 @@ export default async function Page() {
         session={{
           user: {
             id: 'guest',
+            type: 'guest', // ✅ added this
             name: 'Guest',
             email: 'guest@example.com',
           }
