@@ -6,14 +6,12 @@ import { generateUUID } from '@/lib/utils';
 import { DataStreamHandler } from '@/components/data-stream-handler';
 
 export default async function Page() {
-  // Generate a unique ID for the session
   const id = generateUUID();
 
-  // Correct use of cookies (no await)
-  const cookieStore = cookies();
+  // ✅ FIX: cookies() is async — add await
+  const cookieStore = await cookies();
   const modelIdFromCookie = cookieStore.get('chat-model');
 
-  // Fallback to default chat model if no cookie is found
   const modelId = modelIdFromCookie?.value ?? DEFAULT_CHAT_MODEL;
 
   return (
