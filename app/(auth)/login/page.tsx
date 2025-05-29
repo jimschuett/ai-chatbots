@@ -39,8 +39,7 @@ useEffect(() => {
     });
   } else if (state.status === 'success') {
     setIsSuccessful(true);
-    // updateSession(); ← ❌ remove this
-    router.refresh();  // ✅ keep this
+    router.refresh();
   }
 }, [state.status, router]);
 
